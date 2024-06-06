@@ -1,14 +1,15 @@
 import {gsap} from 'gsap';
 import React, { useEffect, useRef, useState } from 'react'
 export default function Navbar() {
+  
+  const navRef=useRef(null);
 
-const[navToggle,setNavToggle]= useState(false);
+  const[navToggle,setNavToggle]= useState(false);
 
   function handleToggle(){
     setNavToggle(prev=>!prev);
     
   }
-  const navRef=useRef(null);
 useEffect(()=>{
   
   gsap.from(navRef.current,{
@@ -18,16 +19,14 @@ useEffect(()=>{
     delay:1,
     stagger:1
   })
-})
+},[navToggle])
   
-  
-
   return (
-    <div ref={navRef} className='sticky top-0 w-full z-10'>
+    <div ref={navRef} className=' w-full z-10 sticky top-0'>
       <nav  className='  w-full  bg-black p-2 px-8 border-2 flex justify-between items-center mob:p-2 mob:px-16 tab:px-12'>
 
          <div className=" logo h-10 w-10  mob:w-14 mob:h-14  object-cover">
-            <img src='../public/logo.png' alt="logo" className='h-full rounded-full '/>
+            <img src='../logo.png' alt="logo" className='h-full rounded-full '/>
          </div>
 
         <ul className=' hidden  text-white gap-8 text-2xl tab:flex '>
